@@ -9,8 +9,9 @@ import java.net.URL;
 //create class
 public class Awaomain extends JPanel implements Runnable, KeyListener, MouseListener
 {
-
-
+    int FRAME_WIDTH = 500, FRAME_HEIGHT=500;
+    int top;
+    
     //class to prep the gui for use
     public Awaomain ()
     {
