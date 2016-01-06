@@ -57,7 +57,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         //variable to get the int value of the input
         int key = e.getKeyCode ();
 
-        /*f (key == KeyEvent.VK_DOWN)
+        /*if (key == KeyEvent.VK_DOWN)
         {
             down = true;
         }
