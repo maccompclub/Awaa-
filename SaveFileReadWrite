@@ -1,14 +1,45 @@
 class SFile_RW
 {
-  public String[][][] readSave()
-  {
-    String [][][]saveState;
-    return saveState;
-  }
-  
-  
-  public void writeSave(String[][][] saveState,String saveFile)
-  {
-    
-  }
+    public String readSave ()
+    {
+        String saveState;
+        return saveState;
+    }
+
+
+    public static void loadreality ()
+    {
+        int playchunkx = 5;
+        int playchunky = 5;
+        int toplchunkx = playchunkx - 5;
+        int toplchunky = playchunky - 5;
+        String fil = "";
+        for (int i = 0 ; i < 11 ; i++)
+        {
+            for (int z = 0 ; z < 11 ; z++)
+            {
+                fil = (toplchunkx + i) + " " + (toplchunky + z) + ".txt";
+                for (int p = 0 ; p < 12 ; p++)
+                {
+                    for (int q = 0 ; q < 12 ; q++)
+                    {
+
+                    }
+                }
+            }
+        }
+    }
+
+
+    public static void adjust (String input)
+    {
+        String[]
+
+    }
+
+
+    public void writeSave (String saveState, String saveFile)
+    {
+
+    }
 }
