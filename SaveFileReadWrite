@@ -1,28 +1,27 @@
+import java.io.*;
 class SFile_RW
 {
     public String readSave ()
     {
-        String saveState;
+        String saveState = "";
         return saveState;
     }
 
 
     static int charx = 50, chary = 40;
 
-    public static String[] [] loadreality (int currentx, int current y)
+    public static String[] [] loadreality (int toplchunkx, int toplchunky)
     {
-        String reality = new String [11] [11]
-            int toplchunkx = currentx - 5;
-        int toplchunky = currenty - 5;
+        String reality = "";
         String currentLoad = "";
-        for (int i = 0 ; i < 11 ; i++)
+        currentLoad = "(" + (toplchunkx) + " " + (toplchunky) + ").txt";
+        try
         {
-            for (int z = 0 ; z < 11 ; z++)
-            {
-                currentLoad = "(" + (toplchunkx + i) + " " + (toplchunky + z) + ").txt";
-                BufferedReader currentRead = new BufferedReader (new FileReader (currentLoad));
-                reality [i] [z] = currentRead.readLine ();
-            }
+            BufferedReader currentRead = new BufferedReader (new FileReader (currentLoad));
+            reality = currentRead.readLine ();
+        }
+        catch (Exception e)
+        {
         }
         return reality;
     }
