@@ -59,24 +59,6 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     }
 
 
-    public void loadreality ()
-    {
-        for ()
-        {
-            for ()
-            {
-                for ()
-                {
-                    for ()
-                    {
-                        realityarray
-                    }
-                }
-            }
-        }
-    }
-
-
     //method to draw and manage output
     public void paintComponent (Graphics g)
     {
