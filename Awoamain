@@ -17,7 +17,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //number of characters on x and y axis
     static int charx = 50, chary = 40;
     static char[] [] displayarray = new char [charx] [chary];
-    //static int [] [] colorchar = new int [chary] [charx]
+    //static int [] [] colorchar = new int [charx] [chary]
 
     //class to prep the gui for use
     public Awaomain ()
