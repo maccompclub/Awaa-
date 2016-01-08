@@ -26,10 +26,19 @@ class SFile_RW
     }
 
 
-    public static void adjust (String input)
+    public static String[] [] adjust (String input)
     {
-        String[]
+        String[] inpoot = input.split ();
+        String[] [] chuck = new String [12] [12];
+        for (int i = 0 ; i < 12 ; i++)
+        {
+            for (int z = 0 ; z < 12 ; z++)
+            {
+                chuck [i] [z] = inpoot [z + 12 * i];
+            }
 
+        }
+        return chuck;
     }
 
 
