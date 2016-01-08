@@ -1,1 +1,14 @@
-
+class SFile_RW
+{
+  public String readSave()
+  {
+    String saveState;
+    return saveState;
+  }
+  
+  
+  public void writeSave(String saveState,String saveFile)
+  {
+    
+  }
+}
