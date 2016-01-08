@@ -7,27 +7,22 @@ class SFile_RW
     }
 
 
-    public static void loadreality ()
+    public static String [][] loadreality (int currentx,int current y)
     {
-        int playchunkx = 5;
-        int playchunky = 5;
-        int toplchunkx = playchunkx - 5;
-        int toplchunky = playchunky - 5;
-        String fil = "";
+        String reality = new String [11][11]
+        int toplchunkx = currentx - 5;
+        int toplchunky = currenty - 5;
+        String currentLoad = "";
         for (int i = 0 ; i < 11 ; i++)
         {
             for (int z = 0 ; z < 11 ; z++)
             {
-                fil = (toplchunkx + i) + " " + (toplchunky + z) + ".txt";
-                for (int p = 0 ; p < 12 ; p++)
-                {
-                    for (int q = 0 ; q < 12 ; q++)
-                    {
-
-                    }
-                }
+                currentLoad = "("+(toplchunkx + i) + " " + (toplchunky + z) + ").txt";
+                BufferedReader currentRead=new BufferedReader(new FileReader(currentLoad));
+                reality[i][z]=currentRead.readLine();
             }
         }
+        return reality;
     }
 
 
