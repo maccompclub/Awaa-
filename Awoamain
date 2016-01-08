@@ -10,11 +10,10 @@ import java.net.URL;
 public class Awaomain extends JPanel implements Runnable, KeyListener, MouseListener
 {
     final static int FRAME_WIDTH = 1000, FRAME_HEIGHT = 600;
-    final static int top;
+    static int top;
     //individual character width/height
     final static int charwidth = 13;
     final static int charheight = 15;
-    final static int bubblew = 132;
     //number of characters on x and y axis
     static int charx = 50, chary = 40;
     static char[] [] displayarray = new char [charx] [chary];
