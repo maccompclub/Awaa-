@@ -9,8 +9,15 @@ import java.net.URL;
 //create class
 public class Awaomain extends JPanel implements Runnable, KeyListener, MouseListener
 {
-    int FRAME_WIDTH = 500, FRAME_HEIGHT = 500;
-    int top;
+    static int FRAME_WIDTH = 1000, FRAME_HEIGHT = 600;
+    static int top;
+    //individual character width/height
+    static int charwidth = 13;
+    static int charheight = 15;
+    //number of characters on x and y axis
+    static int charx = 50, chary = 40;
+    static char[] [] displayarray = new char [charx] [chary];
+    //static int [] [] colorchar = new int [chary] [charx]
 
     //class to prep the gui for use
     public Awaomain ()
@@ -40,9 +47,10 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //run method to handle the majority of the management of the game
     public void run ()
     {
+
         while (true)
         {
-            
+
             //repaint the screen
             repaint ();
         }
@@ -52,13 +60,33 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //method to draw and manage output
     public void paintComponent (Graphics g)
     {
-            g.setColor(Color.white);
-            g.fillRect(0,0,200,200);
-            g.setColor(Color.red);
-            //NOTE 50, 60 is bottom left
-            g.drawString ("@", 50, 60);
-            g.setColor(Color.black);
-            g.drawRect(45,45,20,18);
+        g.setColor(Color.white);
+        g.fillRect(0,0,FRAME_WIDTH,FRAME_HEIGHT);
+        g.setColor(Color.black);
+        for (int i = 0 ; i < charx ; i++)
+        {
+            for (int z = 0 ; z < chary ; z++)
+            {
+                //color lookup table
+                /*
+                switch (colorchar [i] [z]){
+                case 1:
+                g.setColor(Color.red);
+                break;
+                etc
+                }
+                */
+                displayarray [i] [z] = 'L';
+                g.drawString (displayarray [i] [z] + "", (i+1) * charwidth, top + charheight * (z+1));
+            }
+        }
+        /*g.setColor(Color.white);
+        g.fillRect(0,0,200,200);
+        g.setColor(Color.red);
+        //NOTE 50, 60 is bottom left
+        g.drawString ("@", 50, 60);
+        g.setColor(Color.black);
+        g.drawRect(45,45,20,18); */
     }
 
 
@@ -133,7 +161,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         int my = e.getY ();
         System.out.println (mx);
         System.out.println (my);
-        
+
 
 
 
