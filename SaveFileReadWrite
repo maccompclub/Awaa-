@@ -1,13 +1,13 @@
 class SFile_RW
 {
-  public String readSave()
+  public String[][][] readSave()
   {
-    String saveState;
+    String [][][]saveState;
     return saveState;
   }
   
   
-  public void writeSave(String saveState,String saveFile)
+  public void writeSave(String[][][] saveState,String saveFile)
   {
     
   }
