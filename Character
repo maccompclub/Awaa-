@@ -1,4 +1,40 @@
-class Character
+import java.io.*;
+class character
 {
+    public int strh;
+    public int inte;
+    public int dext;
+    public int luck;
+    public int chunkx;
+    public int chunky;
 
+    public character (int strh, int inte, int dext, int luck)
+    {
+        chunkx = 0;
+        chunky = 0;
+        this.strh = strh;
+        this.inte = inte;
+        this.dext = dext;
+        this.luck = luck;
+    }
+
+
+    public character (String load)
+    {
+        try
+        {
+            BufferedReader read = new BufferedReader (new FileReader (load + ".txt"));
+            chunkx = Integer.parseInt (read.readLine ());
+            chunky = Integer.parseInt (read.readLine ());
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+
+    public String toString ()
+    {
+        return "Current location:(" + chunkx + "," + chunky + ")\nStrength: " + strh + "\nIntelligence: " + inte + "\nDexterity: " + dext + "\nLuck: " + luck;
+    }
 }
