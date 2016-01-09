@@ -10,11 +10,11 @@ class SFile_RW
 
     static int charx = 50, chary = 40;
 
-    public static String[] [] loadreality (int toplchunkx, int toplchunky)
+    public static String loadreality (int toplchunkx, int toplchunky)
     {
         String reality = "";
         String currentLoad = "";
-        currentLoad = "(" + (toplchunkx) + " " + (toplchunky) + ").txt";
+        currentLoad = "0 0.txt"; //(toplchunkx) + " " + (toplchunky) + ".txt";
         try
         {
             BufferedReader currentRead = new BufferedReader (new FileReader (currentLoad));
@@ -43,8 +43,22 @@ class SFile_RW
     }
 
 
-    public void writeSave (String saveState, String saveFile)
+    public void writeSave (String[] [] saveState, String saveFile)
     {
-
+        try
+        {
+            FileWriter fiw = new FileWriter (saveFile);
+            PrintWriter prw = new PrintWriter (fiw);
+            for (int i = 0 ; i < 40 ; i++)
+            {
+                for (int z = 0 ; z < 50 ; z++)
+                {
+                    prw.print (saveState [z] [i] + " ");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+        }
     }
 }
