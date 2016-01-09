@@ -14,12 +14,13 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //individual character width/height
     final static int charwidth = 13;
     final static int charheight = 15;
+    final static int bubblew = 132;
     //number of characters on x and y axis
     static int charx = 50, chary = 40;
-    static char[] [] displayarray = new char [charx] [chary];
-    static char[] [] realityarray = new char [bubblew] [bubblew];
+    //static char[] [] displayarray = new char [charx] [chary];
+    static String[] [] realityarray = new String [bubblew] [bubblew];
     //static int [] [] colorchar = new int [charx] [chary]
-
+    boolean down = false,right= false,left = false,up = false,
     //class to prep the gui for use
     public Awaomain ()
     {
@@ -42,25 +43,38 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     }
 
 
-
-
-
     //run method to handle the majority of the management of the game
     public void run ()
     {
-        loadreality ();
+        realityarray = SFile_RW.adjust (SFile_RW.loadreality (character.chunkx, character.chunky));
         while (true)
         {
-
+            if (right) {
+            character.posx = character.posx + 1;
+            }
+            if (left){
+            character.posx = character.posx - 1;
+            }
+            if (up) {
+            character.posy = character.posy + 1;
+            }
+            if (down) {
+            character.posy = character.posy - 1;
+            }
+            realityarray [character.posx] [character.posy] = "@"+""+realityarray [character.posx] [character.posy] 
             //repaint the screen
             repaint ();
         }
     }
 
 
+
+
+
     //method to draw and manage output
     public void paintComponent (Graphics g)
     {
+        
         g.setColor (Color.white);
         g.fillRect (0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         g.setColor (Color.black);
@@ -77,8 +91,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
                 etc
                 }
                 */
-                displayarray [i] [z] = 'L';
-                g.drawString (displayarray [i] [z] + "", (i + 1) * charwidth, top + charheight * (z + 1));
+                /*g.drawString ("@",(i + 1) * charwidth, top + charheight * (z + 1));
+                System.out.print("@ ");*/
+                g.drawString (realityarray [i] [z].charAt(0) +"", (i + 1) * charwidth, top + charheight * (z + 1));
             }
         }
         /*g.setColor(Color.white);
@@ -97,27 +112,51 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         //variable to get the int value of the input
         int key = e.getKeyCode ();
 
-        /*f (key == KeyEvent.VK_DOWN)
+         if(key == KeyEvent.VK_2)
         {
             down = true;
         }
-        if (key == KeyEvent.VK_UP)
+        if (key == KeyEvent.VK_8)
         {
 
             up = true;
 
         }
-        if (key == KeyEvent.VK_LEFT)
+        if (key == KeyEvent.VK_4)
         {
 
             left = true;
 
         }
-        if (key == KeyEvent.VK_RIGHT)
+        if (key == KeyEvent.VK_6)
         {
 
             right = true;
-        }*/
+        }
+        if (key == KeyEvent.VK_9)
+        {
+
+            right = true;
+            up = true
+        }
+        if (key == KeyEvent.VK_7)
+        {
+
+            left = true;
+            up = true
+        }
+        if (key == KeyEvent.VK_3)
+        {
+
+            right = true;
+            down = true
+        }
+        if (key == KeyEvent.VK_1)
+        {
+
+            left = true;
+            down = true
+        }
 
     }
 
@@ -133,6 +172,52 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     {
         //declare in value to key released
         int key = e.getKeyCode ();
+
+         if(key == KeyEvent.VK_2)
+        {
+            down = false;
+        }
+        if (key == KeyEvent.VK_8)
+        {
+
+            up = false;
+
+        }
+        if (key == KeyEvent.VK_4)
+        {
+
+            left = false;
+
+        }
+        if (key == KeyEvent.VK_6)
+        {
+
+            right = false;
+        }
+        if (key == KeyEvent.VK_9)
+        {
+
+            right = false;
+            up = false
+        }
+        if (key == KeyEvent.VK_7)
+        {
+
+            left = false;
+            up = false
+        }
+        if (key == KeyEvent.VK_3)
+        {
+
+            right = false;
+            down = false
+        }
+        if (key == KeyEvent.VK_1)
+        {
+
+            left = false;
+            down = false
+        }
 
     }
 
