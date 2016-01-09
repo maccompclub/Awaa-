@@ -5,6 +5,10 @@ class character
     public int inte;
     public int dext;
     public int luck;
+    public int survival;
+    public int tech;
+    public int posx;
+    public int posy;
     public int chunkx;
     public int chunky;
 
