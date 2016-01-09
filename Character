@@ -7,6 +7,7 @@ class character
     public int luck;
     public int survival;
     public int tech;
+    public int combat;
     public int posx;
     public int posy;
     public int chunkx;
@@ -30,6 +31,15 @@ class character
             BufferedReader read = new BufferedReader (new FileReader (load + ".txt"));
             chunkx = Integer.parseInt (read.readLine ());
             chunky = Integer.parseInt (read.readLine ());
+            posx = Integer.parseInt (read.readLine ());
+            posy = Integer.parseInt (read.readLine ());
+            strh = Integer.parseInt (read.readLine ());
+            inte = Integer.parseInt (read.readLine ());
+            dext = Integer.parseInt (read.readLine ());
+            luck = Integer.parseInt (read.readLine ());
+            survival = Integer.parseInt (read.readLine ());
+            tech = Integer.parseInt (read.readLine ());
+            combat = Integer.parseInt (read.readLine ());
         }
         catch (Exception e)
         {
