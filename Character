@@ -51,4 +51,32 @@ class character
     {
         return "Current location:(" + chunkx + "," + chunky + ")\nStrength: " + strh + "\nIntelligence: " + inte + "\nDexterity: " + dext + "\nLuck: " + luck;
     }
+
+
+    public static boolean cook ()
+    {
+        if (survival >= 3 && inte >= 5 && dext >= 5)
+        {
+            double lmao = Math.random () * (101);
+            if (lmao < (inte + dext) * survival)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean crit ()
+    {
+        if (combat > 2 && luck > 5)
+        {
+            double lmao = Math.random () * (101);
+            if (lmao < luck * combat)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
