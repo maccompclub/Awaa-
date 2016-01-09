@@ -20,7 +20,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //static char[] [] displayarray = new char [charx] [chary];
     static String[] [] realityarray = new String [bubblew] [bubblew];
     //static int [] [] colorchar = new int [charx] [chary]
-    static boolean down = false, right = false, left = false, up = false;
+    static boolean down = false, right = false, left = false, up = false, nothing = false;
     //class to prep the gui for use
     public Awaomain ()
     {
@@ -49,27 +49,28 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
 
         character Stewart = new character ();
         Stewart = loadchar (Stewart);
+        repaint();
         while (true)
         {
+            while (!nothing){
+            }
             Stewart = updatepos (Stewart);
             //repaint the screen
             //simulated lag
-            try
-            {
-                Thread.sleep (300);
-            }
-            catch (Exception e)
-            {
-
+            try{
+            Thread.sleep(100);
+            }catch (Exception e) {
             }
             repaint ();
+            
+            
         }
     }
 
 
     public static character updatepos (character cha)
     {
-        System.out.println(realityarray [cha.posx] [cha.posy]);
+        realityarray [cha.posx] [cha.posy] = realityarray [cha.posx] [cha.posy].substring(1);
         if (right)
         {
             cha.posx = cha.posx + 1;
@@ -142,50 +143,62 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         //variable to get the int value of the input
         int key = e.getKeyCode ();
         //NOTE the # value here is NOT for the numpad, must be changed so that it is
-        if (key == KeyEvent.VK_2)
+        if (key == KeyEvent.VK_NUMPAD2)
         {
             down = true;
+            nothing = true;
         }
-        if (key == KeyEvent.VK_8)
+        if (key == KeyEvent.VK_NUMPAD8)
         {
 
             up = true;
+            nothing = true;
 
         }
-        if (key == KeyEvent.VK_4)
+        if (key == KeyEvent.VK_NUMPAD4)
         {
 
             left = true;
+            nothing = true;
 
         }
-        if (key == KeyEvent.VK_6)
+        if (key == KeyEvent.VK_NUMPAD6)
         {
 
             right = true;
+            nothing = true;
         }
-        if (key == KeyEvent.VK_9)
+        if (key == KeyEvent.VK_NUMPAD9)
         {
 
             right = true;
             up = true;
+            nothing = true;
         }
-        if (key == KeyEvent.VK_7)
+        if (key == KeyEvent.VK_NUMPAD7)
         {
 
             left = true;
             up = true;
+            nothing = true;
         }
-        if (key == KeyEvent.VK_3)
+        if (key == KeyEvent.VK_NUMPAD3)
         {
 
             right = true;
             down = true;
+            nothing = true;
         }
-        if (key == KeyEvent.VK_1)
+        if (key == KeyEvent.VK_NUMPAD1)
         {
 
             left = true;
             down = true;
+            nothing = true;
+        }
+        if (key == KeyEvent.VK_NUMPAD5)
+        {
+            nothing = true;
         }
 
     }
@@ -203,50 +216,62 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         //declare in value to key released
         int key = e.getKeyCode ();
 
-        if (key == KeyEvent.VK_2)
+        if (key == KeyEvent.VK_NUMPAD2)
         {
             down = false;
+            nothing = false;
         }
-        if (key == KeyEvent.VK_8)
+        if (key == KeyEvent.VK_NUMPAD8)
         {
 
             up = false;
+            nothing = false;
 
         }
-        if (key == KeyEvent.VK_4)
+        if (key == KeyEvent.VK_NUMPAD4)
         {
 
             left = false;
+            nothing = false;
 
         }
-        if (key == KeyEvent.VK_6)
+        if (key == KeyEvent.VK_NUMPAD6)
         {
 
             right = false;
+            nothing = false;
         }
-        if (key == KeyEvent.VK_9)
+        if (key == KeyEvent.VK_NUMPAD9)
         {
 
             right = false;
             up = false;
+            nothing = false;
         }
-        if (key == KeyEvent.VK_7)
+        if (key == KeyEvent.VK_NUMPAD7)
         {
 
             left = false;
             up = false;
+            nothing = false;
         }
-        if (key == KeyEvent.VK_3)
+        if (key == KeyEvent.VK_NUMPAD3)
         {
 
             right = false;
             down = false;
+            nothing = false;
         }
-        if (key == KeyEvent.VK_1)
+        if (key == KeyEvent.VK_NUMPAD1)
         {
 
             left = false;
             down = false;
+            nothing = false;
+        }
+        if (key == KeyEvent.VK_NUMPAD5)
+        {
+            nothing = false;
         }
 
     }
