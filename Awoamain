@@ -20,7 +20,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //static char[] [] displayarray = new char [charx] [chary];
     static String[] [] realityarray = new String [bubblew] [bubblew];
     //static int [] [] colorchar = new int [charx] [chary]
-    boolean down = false,right= false,left = false,up = false,
+    static boolean down = false, right = false, left = false, up = false;
     //class to prep the gui for use
     public Awaomain ()
     {
@@ -46,27 +46,57 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //run method to handle the majority of the management of the game
     public void run ()
     {
-        realityarray = SFile_RW.adjust (SFile_RW.loadreality (character.chunkx, character.chunky));
+
+        character Stewart = new character ();
+        Stewart = loadchar (Stewart);
         while (true)
         {
-            if (right) {
-            character.posx = character.posx + 1;
-            }
-            if (left){
-            character.posx = character.posx - 1;
-            }
-            if (up) {
-            character.posy = character.posy + 1;
-            }
-            if (down) {
-            character.posy = character.posy - 1;
-            }
-            realityarray [character.posx] [character.posy] = "@"+""+realityarray [character.posx] [character.posy] 
+            Stewart = updatepos (Stewart);
             //repaint the screen
+            //simulated lag
+            try
+            {
+                Thread.sleep (300);
+            }
+            catch (Exception e)
+            {
+
+            }
             repaint ();
         }
     }
 
+
+    public static character updatepos (character cha)
+    {
+        System.out.println(realityarray [cha.posx] [cha.posy]);
+        if (right)
+        {
+            cha.posx = cha.posx + 1;
+        }
+        if (left)
+        {
+            cha.posx = cha.posx - 1;
+        }
+        if (up)
+        {
+            cha.posy = cha.posy - 1;
+        }
+        if (down)
+        {
+            cha.posy = cha.posy + 1;
+        }
+        realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
+        return cha;
+    }
+
+
+    public static character loadchar (character cha)
+    {
+        realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+        realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
+        return cha;
+    }
 
 
 
@@ -74,7 +104,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //method to draw and manage output
     public void paintComponent (Graphics g)
     {
-        
+
         g.setColor (Color.white);
         g.fillRect (0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         g.setColor (Color.black);
@@ -93,7 +123,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
                 */
                 /*g.drawString ("@",(i + 1) * charwidth, top + charheight * (z + 1));
                 System.out.print("@ ");*/
-                g.drawString (realityarray [i] [z].charAt(0) +"", (i + 1) * charwidth, top + charheight * (z + 1));
+                g.drawString (realityarray [i] [z].charAt (0) + "", (i + 1) * charwidth, top + charheight * (z + 1));
             }
         }
         /*g.setColor(Color.white);
@@ -111,8 +141,8 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     {
         //variable to get the int value of the input
         int key = e.getKeyCode ();
-
-         if(key == KeyEvent.VK_2)
+        //NOTE the # value here is NOT for the numpad, must be changed so that it is
+        if (key == KeyEvent.VK_2)
         {
             down = true;
         }
@@ -137,25 +167,25 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         {
 
             right = true;
-            up = true
+            up = true;
         }
         if (key == KeyEvent.VK_7)
         {
 
             left = true;
-            up = true
+            up = true;
         }
         if (key == KeyEvent.VK_3)
         {
 
             right = true;
-            down = true
+            down = true;
         }
         if (key == KeyEvent.VK_1)
         {
 
             left = true;
-            down = true
+            down = true;
         }
 
     }
@@ -173,7 +203,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         //declare in value to key released
         int key = e.getKeyCode ();
 
-         if(key == KeyEvent.VK_2)
+        if (key == KeyEvent.VK_2)
         {
             down = false;
         }
@@ -198,25 +228,25 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
         {
 
             right = false;
-            up = false
+            up = false;
         }
         if (key == KeyEvent.VK_7)
         {
 
             left = false;
-            up = false
+            up = false;
         }
         if (key == KeyEvent.VK_3)
         {
 
             right = false;
-            down = false
+            down = false;
         }
         if (key == KeyEvent.VK_1)
         {
 
             left = false;
-            down = false
+            down = false;
         }
 
     }
