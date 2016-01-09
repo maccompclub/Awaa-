@@ -43,7 +43,7 @@ class SFile_RW
     }
 
 
-    public void writeSave (String[] [] saveState, String saveFile)
+    public static void writeSave (String[] [] saveState, String saveFile)
     {
         try
         {
