@@ -14,7 +14,7 @@ class SFile_RW
     {
         String reality = "";
         String currentLoad = "";
-        currentLoad = "0 0.txt"; //(toplchunkx) + " " + (toplchunky) + ".txt";
+        currentLoad = (toplchunkx) + " " + (toplchunky) + ".txt";
         try
         {
             BufferedReader currentRead = new BufferedReader (new FileReader (currentLoad));
