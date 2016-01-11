@@ -49,43 +49,71 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
 
         character Stewart = new character ();
         Stewart = loadchar (Stewart);
-        repaint();
+        repaint ();
         while (true)
         {
-            while (!nothing){
+            while (!nothing)
+            {
             }
             Stewart = updatepos (Stewart);
             //repaint the screen
             //simulated lag
-            try{
-            Thread.sleep(100);
-            }catch (Exception e) {
+            try
+            {
+                Thread.sleep (100);
+            }
+            catch (Exception e)
+            {
             }
             repaint ();
-            
-            
+
+
         }
     }
 
 
     public static character updatepos (character cha)
     {
-        realityarray [cha.posx] [cha.posy] = realityarray [cha.posx] [cha.posy].substring(1);
+        realityarray [cha.posx] [cha.posy] = realityarray [cha.posx] [cha.posy].substring (1);
         if (right)
         {
             cha.posx = cha.posx + 1;
+            if (cha.posx == 50)
+            {
+             cha.chunkx++;
+             cha.posx = 0;
+             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+            }
         }
         if (left)
         {
             cha.posx = cha.posx - 1;
+            if (cha.posx == -1)
+            {
+             cha.chunkx--;
+             cha.posx = 49;
+             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+            }
         }
         if (up)
         {
             cha.posy = cha.posy - 1;
+            if (cha.posy == -1)
+            {
+             cha.chunky--;
+             cha.posy = 39;
+             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+            }
         }
         if (down)
         {
             cha.posy = cha.posy + 1;
+            if (cha.posy == 40)
+            {
+             cha.chunky++;
+             cha.posy = 0;
+             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+            }
         }
         realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
         return cha;
