@@ -47,8 +47,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     public void run ()
     {
 
-        character Stewart = new character ();
+        character Stewart = new character (0, 0, 0, 0);
         Stewart = loadchar (Stewart);
+        entity[] everyone = new entity [charx * chary];
         repaint ();
         while (true)
         {
@@ -56,6 +57,10 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
             }
             Stewart = updatepos (Stewart);
+            for (int i = 0 ; i < charx * chary ; i++)
+            {
+                everyone [i] = updateent (everyone [i]);
+            }
             //repaint the screen
             //simulated lag
             try
@@ -80,9 +85,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             cha.posx = cha.posx + 1;
             if (cha.posx == 50)
             {
-             cha.chunkx++;
-             cha.posx = 0;
-             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                cha.chunkx++;
+                cha.posx = 0;
+                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
             }
         }
         if (left)
@@ -90,9 +95,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             cha.posx = cha.posx - 1;
             if (cha.posx == -1)
             {
-             cha.chunkx--;
-             cha.posx = 49;
-             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                cha.chunkx--;
+                cha.posx = 49;
+                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
             }
         }
         if (up)
@@ -100,9 +105,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             cha.posy = cha.posy - 1;
             if (cha.posy == -1)
             {
-             cha.chunky--;
-             cha.posy = 39;
-             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                cha.chunky--;
+                cha.posy = 39;
+                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
             }
         }
         if (down)
@@ -110,9 +115,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             cha.posy = cha.posy + 1;
             if (cha.posy == 40)
             {
-             cha.chunky++;
-             cha.posy = 0;
-             realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                cha.chunky++;
+                cha.posy = 0;
+                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
             }
         }
         realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
