@@ -17,6 +17,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     final static int bubblew = 132;
     //number of characters on x and y axis
     static int charx = 50, chary = 40;
+    static int lastent = 1;
     //static char[] [] displayarray = new char [charx] [chary];
     static String[] [] realityarray = new String [bubblew] [bubblew];
     //static int [] [] colorchar = new int [charx] [chary]
@@ -57,7 +58,7 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
             }
             Stewart = updatepos (Stewart);
-            for (int i = 0 ; i < charx * chary ; i++)
+            for (int i = 0 ; i < charx * chary && i < lastent; i++)
             {
                 everyone [i] = updateent (everyone [i]);
             }
