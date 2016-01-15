@@ -1,17 +1,17 @@
 import java.io.*;
 class character
 {
-    public int strh;
-    public int inte;
-    public int dext;
-    public int luck;
-    public int survival;
-    public int tech;
-    public int combat;
-    public int posx;
-    public int posy;
-    public int chunkx;
-    public int chunky;
+    public static int strh;
+    public static int inte;
+    public static int dext;
+    public static int luck;
+    public static int survival;
+    public static int tech;
+    public static int combat;
+    public static int posx;
+    public static int posy;
+    public static int chunkx;
+    public static int chunky;
 
     public character (int strh, int inte, int dext, int luck)
     {
