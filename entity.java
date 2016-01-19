@@ -26,6 +26,12 @@ class entity
         positiony = tera.posy;
         passable = tera.pass;
     }
+    
+    public static void updatePos(int deltaX,int deltaY)
+    {
+        positionx+=deltaX;
+        positiony+=deltaY;
+    }
 }
 
 
