@@ -1,6 +1,7 @@
 import java.io.*;
 class character
 {
+    public statis String name;
     public static int strh;
     public static int inte;
     public static int dext;
@@ -8,6 +9,8 @@ class character
     public static int survival;
     public static int tech;
     public static int combat;
+    public static int maxhealth;
+    public static int currenthealth;
     public static int posx;
     public static int posy;
     public static int chunkx;
@@ -24,11 +27,12 @@ class character
     }
 
 
-    public character (String load)
+    public character (String name)
     {
         try
         {
-            BufferedReader read = new BufferedReader (new FileReader (load + ".txt"));
+            BufferedReader read = new BufferedReader (new FileReader (name + ".txt"));
+            name=name;
             chunkx = Integer.parseInt (read.readLine ());
             chunky = Integer.parseInt (read.readLine ());
             posx = Integer.parseInt (read.readLine ());
@@ -40,10 +44,29 @@ class character
             survival = Integer.parseInt (read.readLine ());
             tech = Integer.parseInt (read.readLine ());
             combat = Integer.parseInt (read.readLine ());
+            maxhealth=Integer.parseInt(read.readLine());
+            currenthealth=Integer.parseInt(read.readLine());
         }
         catch (Exception e)
         {
         }
+    }
+    public static void save()
+    {
+    PrintWriter saver = new PrintWriter(new FileWriter(name+".txt"));
+    saver.printLine(chunkx);
+    saver.printLine(chunky);
+    saver.printLine(posx);
+    saver.printLine(posy);
+    saver.printLine(strh);
+    saver.printLine(inte);
+    saver.printLine(dext);
+    saver.printLine(luck);
+    saver.printLine(survival);
+    saver.printLine(tech);
+    saver.printLine(combat);
+    saver.printLine(maxhealth);
+    saver.printLine(currenthealth);
     }
 
 
