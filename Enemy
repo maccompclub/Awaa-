@@ -1,0 +1,7 @@
+class enemy
+{
+
+  public enemy()
+  {
+  }
+}
