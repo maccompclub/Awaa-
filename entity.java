@@ -12,16 +12,16 @@ class entity
     
     public entity (String spawnInfo)
     {
-        //"Type;chunkx;chunky;posx;poy;drawTile;drawColour"
+        //"Type;posx;poy;drawTile;drawColour"
         String [] data = spawnInfo.split(';');
         if (data[0].equalsIgnoreCase("Enemy"))
         {
             NPC = null;
             CHAR =null;
             try {
-            Enemy = new enemy (data[5].charAt(0),data[6]);    
-            positionx= Integer.parseInt(data[3]);
-            positiony= Integer.parseInt(data[4]);
+            Enemy = new enemy (data[3].charAt(0),data[4]);    
+            positionx= Integer.parseInt(data[1]);
+            positiony= Integer.parseInt(data[2]);
             
             
             } catch (Exception e){}
