@@ -18,8 +18,11 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     //number of characters on x and y axis
     static int charx = 50, chary = 40;
     static int lastent = 1;
-    //static char[] [] displayarray = new char [charx] [chary];
-    static String[] [] realityarray = new String [bubblew] [bubblew];
+    static char[] [] displayarray = new char [charx] [chary];
+    static String[] [] realityarray = new String [charx] [chary];
+    static String[] finemalavan = new String [1];    
+    static entity[] everyone = new entity [charx * chary];
+    static character Stewart;
     //static int [] [] colorchar = new int [charx] [chary]
     static boolean down = false, right = false, left = false, up = false, nothing = false;
     //class to prep the gui for use
@@ -48,9 +51,8 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
     public void run ()
     {
 
-        character Stewart = new character (0, 0, 0, 0);
+        Stewart = new character (0, 0, 0, 0);
         Stewart = loadchar (Stewart);
-        entity[] everyone = new entity [charx * chary];
         repaint ();
         while (true)
         {
@@ -58,10 +60,10 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
             }
             Stewart = updatepos (Stewart);
-            for (int i = 0 ; i < charx * chary && i < lastent; i++)
+            /*for (int i = 0 ; i < charx * chary && i < lastent; i++)
             {
                 everyone [i] = updateent (everyone [i]);
-            }
+            }*/
             //repaint the screen
             //simulated lag
             try
@@ -80,7 +82,6 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
 
     public static character updatepos (character cha)
     {
-        realityarray [cha.posx] [cha.posy] = realityarray [cha.posx] [cha.posy].substring (1);
         if (right)
         {
             cha.posx = cha.posx + 1;
@@ -88,7 +89,8 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
                 cha.chunkx++;
                 cha.posx = 0;
-                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                finemalavan = SFile_RW.loadreality (cha.chunkx, cha.chunky);
+                realityarray = SFile_RW.adjust (finemalavan[0]);
             }
         }
         if (left)
@@ -98,7 +100,8 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
                 cha.chunkx--;
                 cha.posx = 49;
-                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                finemalavan = SFile_RW.loadreality (cha.chunkx, cha.chunky);
+                realityarray = SFile_RW.adjust (finemalavan[0]);
             }
         }
         if (up)
@@ -108,7 +111,8 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
                 cha.chunky--;
                 cha.posy = 39;
-                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                finemalavan = SFile_RW.loadreality (cha.chunkx, cha.chunky);
+                realityarray = SFile_RW.adjust (finemalavan[0]);
             }
         }
         if (down)
@@ -118,18 +122,18 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
             {
                 cha.chunky++;
                 cha.posy = 0;
-                realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
+                finemalavan = SFile_RW.loadreality (cha.chunkx, cha.chunky);
+                realityarray = SFile_RW.adjust (finemalavan[0]);
             }
         }
-        realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
         return cha;
     }
 
 
     public static character loadchar (character cha)
     {
-        realityarray = SFile_RW.adjust (SFile_RW.loadreality (cha.chunkx, cha.chunky));
-        realityarray [cha.posx] [cha.posy] = "@" + "" + realityarray [cha.posx] [cha.posy];
+        finemalavan = SFile_RW.loadreality (cha.chunkx, cha.chunky);
+        realityarray = SFile_RW.adjust (finemalavan[0]);
         return cha;
     }
 
@@ -158,7 +162,9 @@ public class Awaomain extends JPanel implements Runnable, KeyListener, MouseList
                 */
                 /*g.drawString ("@",(i + 1) * charwidth, top + charheight * (z + 1));
                 System.out.print("@ ");*/
-                g.drawString (realityarray [i] [z].charAt (0) + "", (i + 1) * charwidth, top + charheight * (z + 1));
+                displayarray [i] [z] = realityarray[i][z].charAt(0);
+                displayarray [Stewart.posx] [Stewart.posy] = '@';
+                g.drawString (displayarray [i] [z] + "", (i + 1) * charwidth, top + charheight * (z + 1));
             }
         }
         /*g.setColor(Color.white);
