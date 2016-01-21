@@ -10,15 +10,20 @@ class SFile_RW
 
     static int charx = 50, chary = 40;
 
-    public static String loadreality (int toplchunkx, int toplchunky)
+    public static String [] loadreality (int toplchunkx, int toplchunky)
     {
-        String reality = "";
+        String[] reality = new String [1];
         String currentLoad = "";
         currentLoad = (toplchunkx) + " " + (toplchunky) + ".txt";
         try
         {
             BufferedReader currentRead = new BufferedReader (new FileReader (currentLoad));
-            reality = currentRead.readLine ();
+            reality = new String [Integer.parseInt (currentRead.readLine ()) + 1];
+            reality [0] = currentRead.readLine ();
+            for (int i = 1 ; i < reality.length ; i++)
+            {
+                reality [i] = currentRead.readLine ();
+            }
         }
         catch (Exception e)
         {
