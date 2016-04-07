@@ -1,4 +1,4 @@
-class entity
+abstract class entity
 {
     int positionx;
     int positiony;
